@@ -27,6 +27,14 @@ Download the binary for your platform from the [latest release](https://github.c
 | Linux (ARM64) | `lcontext-linux-arm64` |
 | Windows (x64) | `lcontext-windows-x64.exe` |
 
+### Via npm
+
+If you have Node.js installed:
+
+```bash
+npm install -g lcontext-mcp
+```
+
 ### From Source
 
 ```bash

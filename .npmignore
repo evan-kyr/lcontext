@@ -1,0 +1,12 @@
+# Source files (compiled dist/ is included)
+src/
+tsconfig.json
+
+# Development files
+binaries/
+node_modules/
+*.log
+
+# Git files
+.git/
+.gitignore
