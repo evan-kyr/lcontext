@@ -1,4 +1,4 @@
-# Contributing to lcontext
+# Contributing to Lcontext
 
 Thanks for your interest in contributing!
 

@@ -1,16 +1,18 @@
-# lcontext
+# Lcontext
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![npm version](https://img.shields.io/npm/v/lcontext-mcp.svg)](https://www.npmjs.com/package/lcontext-mcp)
 
-MCP (Model Context Protocol) server for [lcontext](https://lcontext.com) analytics. Provides comprehensive analytics context for Claude, including page metrics, visitor profiles, session data, and AI-generated insights.
+MCP server for [Lcontext](https://lcontext.com) behavioral analytics. Provides comprehensive behavioral analytics context for AI coding agents, including page metrics, visitor profiles, session data, and AI-generated insights.
+
+**Works with:** Claude Code, Claude Desktop, Cursor, Windsurf, Cline, and any MCP-compatible AI coding tool.
 
 ## Installation
 
 ### Quick Install (Recommended)
 
 ```bash
-curl -fsSL https://lcontext.com/install.sh | bash
+curl -fsSL https://lcontext.com/api/cli/install | bash
 ```
 
 This downloads a standalone binary - no Node.js required.
@@ -38,7 +40,7 @@ npm install -g lcontext-mcp
 ### From Source
 
 ```bash
-git clone https://github.com/evan-kyr/lcontext.git
+git clone https://github.com/lcontext/lcontext.git
 cd lcontext
 npm install
 npm run build
@@ -50,40 +52,123 @@ npm run build
 
 Sign up at [lcontext.com](https://lcontext.com) and find your API key in **Settings > API Access**.
 
-### 2. Configure Claude Code
+### 2. Configure Your AI Coding Tool
+
+<details open>
+<summary><b>Claude Code / Claude Desktop</b></summary>
+
+Run the install script - it will prompt for your API key and configure Claude automatically:
 
 ```bash
-claude mcp add lcontext -e LCONTEXT_API_KEY=your-api-key -- lcontext
+curl -fsSL https://lcontext.com/api/cli/install | bash
 ```
 
-### 3. Configure Claude Desktop
+Then restart Claude.
 
-Edit your Claude Desktop config file:
+</details>
 
-- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
-- Linux: `~/.config/Claude/claude_desktop_config.json`
+<details>
+<summary><b>Cursor</b></summary>
+
+**Option 1: One-Click Install**
+
+[Install Lcontext in Cursor](https://cursor.com/install-mcp?name=lcontext&config=eyJjb21tYW5kIjoibGNvbnRleHQiLCJlbnYiOnsiTENPTlRFWFRfQVBJX0tFWSI6InlvdXItYXBpLWtleS1oZXJlIn19)
+
+After clicking, replace `your-api-key-here` with your actual API key in Cursor settings.
+
+**Option 2: Manual Setup**
+
+First, install the binary:
+```bash
+curl -fsSL https://lcontext.com/api/cli/install | bash
+```
+
+Then open Cursor Settings (`Cmd/Ctrl + Shift + J`), and add the server:
 
 ```json
 {
-  "mcpServers": {
-    "lcontext": {
-      "command": "lcontext",
-      "env": {
-        "LCONTEXT_API_KEY": "your-api-key-here"
-      }
+  "lcontext": {
+    "command": "lcontext",
+    "env": {
+      "LCONTEXT_API_KEY": "your-api-key-here"
     }
   }
 }
 ```
 
-Then restart Claude.
+</details>
+
+<details>
+<summary><b>Windsurf</b></summary>
+
+First, install the binary:
+```bash
+curl -fsSL https://lcontext.com/api/cli/install | bash
+```
+
+Then open Windsurf and navigate to **Cascade > Configure > MCP Servers** (or click the hammer icon), then click "Add Server" and select "Add custom server". Add this configuration:
+
+```json
+{
+  "lcontext": {
+    "command": "lcontext",
+    "env": {
+      "LCONTEXT_API_KEY": "your-api-key-here"
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary><b>Cline (VS Code Extension)</b></summary>
+
+First, install the binary:
+```bash
+curl -fsSL https://lcontext.com/api/cli/install | bash
+```
+
+Then in VS Code with Cline installed:
+1. Open Cline settings (click gear icon in Cline panel)
+2. Navigate to **MCP Servers** section
+3. Add a new server:
+
+```json
+{
+  "lcontext": {
+    "command": "lcontext",
+    "env": {
+      "LCONTEXT_API_KEY": "your-api-key-here"
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary><b>Other MCP-Compatible Tools</b></summary>
+
+First, install the binary:
+```bash
+curl -fsSL https://lcontext.com/api/cli/install | bash
+```
+
+Lcontext works with any tool that supports the Model Context Protocol. The general configuration pattern is:
+
+- **Command:** `lcontext`
+- **Environment Variable:** `LCONTEXT_API_KEY=your-api-key-here`
+
+Refer to your tool's documentation for MCP server configuration.
+
+</details>
 
 ## Available Tools
 
 ### `get_page_context`
 
-Get comprehensive analytics context for a page including stats, visitor metrics, and all interactive elements with their engagement data.
+Get comprehensive behavioral analytics context for a page including stats, visitor metrics, and all interactive elements with their engagement data.
 
 **Parameters:**
 - `path` (required): The page path (e.g., `/products`, `/checkout`)
@@ -125,7 +210,7 @@ Show me analytics for the "Add to Cart" button
 
 ### `get_app_context`
 
-Get application-wide analytics including total sessions, visitors, page views, engagement metrics, and AI-generated insights.
+Get application-wide behavioral analytics including total sessions, visitors, page views, engagement metrics, and AI-generated insights.
 
 **Parameters:**
 - `periodType` (optional): `day` or `week` (default: `day`)
@@ -133,7 +218,7 @@ Get application-wide analytics including total sessions, visitors, page views, e
 
 **Example:**
 ```
-Give me an overview of my app's analytics for the last week
+Give me an overview of my app's behavioral analytics for the last week
 ```
 
 ### `get_visitors`
@@ -215,7 +300,7 @@ lcontext --update
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `LCONTEXT_API_KEY` | Your lcontext API key | Yes |
+| `LCONTEXT_API_KEY` | Your Lcontext API key | Yes |
 | `LCONTEXT_API_URL` | API base URL (default: https://lcontext.com) | No |
 
 ## Contributing

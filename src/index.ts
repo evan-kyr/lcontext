@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
 /**
- * lcontext MCP Server
+ * Lcontext MCP Server
  *
- * Provides page and element analytics context for Claude Code.
+ * Provides page and element analytics context for AI coding agents.
+ * Works with Claude Code, Cursor, Windsurf, Cline, and any MCP-compatible tool.
  * Requires authentication via LCONTEXT_API_KEY environment variable only.
  *
  * Tools:
@@ -26,8 +27,8 @@ if (args.includes('--version') || args.includes('-v')) {
 if (args.includes('--help') || args.includes('-h')) {
   console.log(`lcontext v1.1.0
 
-MCP server for lcontext page analytics.
-Provides page and element context for Claude Code.
+MCP server for Lcontext page analytics.
+Provides page and element context for AI coding agents.
 
 Usage:
   lcontext [options]
@@ -38,7 +39,7 @@ Options:
   --update         Update to the latest version
 
 Environment Variables:
-  LCONTEXT_API_KEY    Your lcontext API key (required)
+  LCONTEXT_API_KEY    Your Lcontext API key (required)
   LCONTEXT_API_URL    API base URL (default: https://lcontext.com)
 
 Documentation: https://lcontext.com/docs/mcp
@@ -154,8 +155,8 @@ async function checkForUpdates(): Promise<void> {
     const latestVersion = release.tag_name.replace(/^v/, '');
 
     if (latestVersion !== CURRENT_VERSION && isNewerVersion(latestVersion, CURRENT_VERSION)) {
-      console.error(`\n[lcontext] Update available: ${CURRENT_VERSION} → ${latestVersion}`);
-      console.error(`[lcontext] Download: https://github.com/${GITHUB_REPO}/releases/latest\n`);
+      console.error(`\n[Lcontext] Update available: ${CURRENT_VERSION} → ${latestVersion}`);
+      console.error(`[Lcontext] Download: https://github.com/${GITHUB_REPO}/releases/latest\n`);
     }
   } catch {
     // Silently ignore - don't block startup for update checks
@@ -1187,7 +1188,7 @@ async function main() {
 
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("lcontext MCP server running on stdio");
+  console.error("Lcontext MCP server running on stdio");
   console.error(`Connected to: ${API_BASE_URL}`);
 }
 

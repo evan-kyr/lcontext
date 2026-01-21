@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-# lcontext MCP Server Installation Script
-# Downloads and installs the lcontext MCP server binary for Claude Code
+# Lcontext MCP Server Installation Script
+# Downloads and installs the Lcontext MCP server binary for Claude Code
 
 INSTALL_DIR="${HOME}/.local/bin"
 BINARY_NAME="lcontext"
@@ -169,7 +169,7 @@ if [[ ":$PATH:" != *":${INSTALL_DIR}:"* ]]; then
 fi
 
 echo ""
-echo -e "${GREEN}✓ lcontext MCP server installed successfully!${NC}"
+echo -e "${GREEN}✓ Lcontext MCP server installed successfully!${NC}"
 echo ""
 
 # Determine config path for Claude Desktop (fallback)
@@ -188,7 +188,7 @@ echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━�
 echo -e "${GREEN}Configure Claude${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
-echo "To use lcontext with Claude, you need an API key."
+echo "To use Lcontext with Claude, you need an API key."
 echo -e "Get your API key from: ${BLUE}https://lcontext.com/settings${NC}"
 echo ""
 
